@@ -1,0 +1,28 @@
+<mxfile host="Electron">
+  <diagram name="Página-1" id="cBifso-t4Wm8pCdbwhJu">
+    <mxGraphModel dx="2516" dy="996" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="cS26ujF37rhcZkxNoLoZ-4" edge="1" parent="1" source="cS26ujF37rhcZkxNoLoZ-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;" target="cS26ujF37rhcZkxNoLoZ-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cS26ujF37rhcZkxNoLoZ-1" parent="1" style="verticalLabelPosition=bottom;aspect=fixed;html=1;shape=mxgraph.salesforce.web;fillColor=none;strokeColor=none;verticalAlign=top;" value="Front-end&lt;br&gt;Página WEB" vertex="1">
+          <mxGeometry height="170" width="215.19" x="30" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="cS26ujF37rhcZkxNoLoZ-2" parent="1" style="shape=datastore;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="" vertex="1">
+          <mxGeometry height="160" width="160" x="-550" y="365" as="geometry" />
+        </mxCell>
+        <mxCell id="cS26ujF37rhcZkxNoLoZ-5" edge="1" parent="1" source="cS26ujF37rhcZkxNoLoZ-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;" target="cS26ujF37rhcZkxNoLoZ-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="cS26ujF37rhcZkxNoLoZ-3" parent="1" style="image;aspect=fixed;html=1;align=center;fontSize=12;image=img/lib/azure2/general/Code.svg;points=[[0.5,0.003,0],[0.5,0.997,0],[0,0.5,0],[1,0.5,0],[0.985,0.01,0],[0.985,0.99,0],[0.015,0.99,0],[0.015,0.01,0]];" value="Back-end&lt;br&gt;Python Startlette" vertex="1">
+          <mxGeometry height="150" width="184.62" x="-270" y="370" as="geometry" />
+        </mxCell>
+        <mxCell id="cS26ujF37rhcZkxNoLoZ-6" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Banco de Dados&lt;br&gt;PostgreSQL" vertex="1">
+          <mxGeometry height="30" width="160" x="-550" y="530" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
