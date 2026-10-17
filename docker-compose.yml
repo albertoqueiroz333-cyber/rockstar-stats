@@ -8,7 +8,7 @@ services:
     volumes:
       - ./app:/app
     environment:
-      DATABASE_URL: postgresql+psycopg://app_user:app_password@stats_database:5432/app_db
+      DATABASE_URL: postgresql://app_user:app_password@stats_database:5432/app_db
   stats_database:
     image: postgres
     volumes:

@@ -3,32 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Meu Site{% endblock %}</title>
-    <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
+    <title>Estatísticas do Jogador</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            padding: 25px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .form-container h2 {
+            margin-bottom: 20px;
+            text-align: center;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        .form-group input:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 12px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-submit:hover {
+            background-color: #218838;
+        }
+    </style>
 </head>
 <body>
-    <!-- Cabeçalho -->
-    <header>
-        <nav>
-            <h1><a href="/">{{ site_nome | default("Meu Portal") }}</a></h1>
-            <ul>
-                <li><a href="/">Início</a></li>
-                <li><a href="/produtos">Produtos</a></li>
-                <li><a href="/contato">Contato</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <!-- Conteúdo Dinâmico -->
-    <main class="container">
-        {% block content %}
-        <!-- O conteúdo das páginas filhas será injetado aqui -->
-        {% endblock %}
-    </main>
+    <div class="form-container">
+        <h2>Registro de Crimes</h2>
+        <form action="/crimes" method="POST">
+            
+            <!-- PLAYER_ID -->
+            <div class="form-group">
+                <label for="player_id">ID do Jogador (PLAYER_ID):</label>
+                <input type="text" id="player_id" name="PLAYER_ID" maxlength="100" placeholder="Ex: Player123" required>
+            </div>
 
-    <!-- Rodapé -->
-    <footer>
-        <p>&copy; 2026 {{ site_nome }}. Todos os direitos reservados.</p>
-    </footer>
+            <!-- COPS_KILLED -->
+            <div class="form-group">
+                <label for="cops_killed">Policiais Mortos (COPS_KILLED):</label>
+                <input type="number" id="cops_killed" name="COPS_KILLED" min="0" value="0" required>
+            </div>
+
+            <!-- VEHICLES_STOLEN -->
+            <div class="form-group">
+                <label for="vehicles_stolen">Veículos Roubados (VEHICLES_STOLEN):</label>
+                <input type="number" id="vehicles_stolen" name="VEHICLES_STOLEN" min="0" value="0" required>
+            </div>
+
+            <!-- STORE_HOLD_UPS -->
+            <div class="form-group">
+                <label for="store_hold_ups">Assaltos a Lojas (STORE_HOLD_UPS):</label>
+                <input type="number" id="store_hold_ups" name="STORE_HOLD_UPS" min="0" value="0" required>
+            </div>
+
+            <!-- MURDERED_CIVILIANS -->
+            <div class="form-group">
+                <label for="murdered_civilians">Civis Mortos (MURDERED_CIVILIANS):</label>
+                <input type="number" id="murdered_civilians" name="MURDERED_CIVILIANS" min="0" value="0" required>
+            </div>
+
+            <button type="submit" class="btn-submit">Calcular Pena</button>
+        </form>
+    </div>
+
 </body>
 </html>
