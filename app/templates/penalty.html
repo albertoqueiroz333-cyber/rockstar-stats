@@ -1,1 +1,236 @@
-qualquer coisa
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentença Criminal - Modelo</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 12pt;
+            line-height: 1.5;
+            color: #000;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .document-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 50px 70px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border: 1px solid #ccc;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .header .brasao {
+            width: 80px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            margin: 2px 0;
+            font-size: 11pt;
+        }
+
+        .process-info {
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .process-info table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .process-info td {
+            padding: 4px 0;
+            vertical-align: top;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 14pt;
+            font-weight: bold;
+            margin: 30px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title {
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            text-align: justify;
+            text-indent: 40px;
+            margin: 10px 0;
+        }
+
+        .dispositivo {
+            margin-top: 20px;
+        }
+
+        .signature-block {
+            margin-top: 60px;
+            text-align: center;
+            page-break-inside: avoid;
+        }
+
+        .signature-line {
+            width: 300px;
+            border-top: 1px solid #000;
+            margin: 0 auto 10px auto;
+        }
+
+        .footer-note {
+            margin-top: 40px;
+            font-size: 9pt;
+            color: #555;
+            text-align: center;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }
+
+        @media print {
+            body {
+                background: none;
+                padding: 0;
+            }
+            .document-container {
+                box-shadow: none;
+                border: none;
+                padding: 0;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="document-container">
+
+    <!-- CABEÇALHO OFICIAL -->
+    <div class="header">
+        <!-- Substitua a imagem abaixo pelo Brasão da República / Estado se necessário -->
+        <svg class="brasao" viewBox="0 0 100 100" width="80" height="80">
+            <circle cx="50" cy="50" r="45" fill="none" stroke="#000" stroke-width="2"/>
+            <img src="{{ url_for('static', path='brasao.jpg') }}">
+        </svg>
+        <p>PODER JUDICIÁRIO</p>
+        <p>TRIBUNAL DE JUSTIÇA DO ESTADO DE [ESTADO]</p>
+        <p>COMARCA DE [NOME DA COMARCA]</p>
+        <p>[NÚMERO]ª VARA CRIMINAL</p>
+    </div>
+
+    <!-- DADOS DO PROCESSO -->
+    <div class="process-info">
+        <table>
+            <tr>
+                <td style="width: 20%;"><strong>Ação:</strong></td>
+                <td>Ação Penal - Procedimento Ordinário</td>
+            </tr>
+            <tr>
+                <td><strong>Processo nº:</strong></td>
+                <td>0000000-00.2026.8.00.0000</td>
+            </tr>
+            <tr>
+                <td><strong>Autor:</strong></td>
+                <td>Ministério Público do Estado de [Estado]</td>
+            </tr>
+            <tr>
+                <td><strong>Réu:</strong></td>
+                <td>[Nome Completo do Réu]</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- TÍTULO DA SENTENÇA -->
+    <div class="title">SENTENÇA</div>
+
+    <!-- RELATÓRIO -->
+    <div class="section-title">I – RELATÓRIO</div>
+    <p>
+        O <strong>MINISTÉRIO PÚBLICO DO ESTADO DE [ESTADO]</strong> ofereceu denúncia em face de <strong>[NOME DO RÉU]</strong>, devidamente qualificado nos autos, imputando-lhe a prática do crime previsto no art. [Número do Artigo] do Código Penal, pelos fatos assim narrados na peça acusatória: <em>"[Resumo dos fatos contidos na denúncia]"</em>.
+    </p>
+    <p>
+        A denúncia foi recebida em [Data do Recebimento]. O acusado foi citado e apresentou resposta à acusação às fls. [Número]. Não sendo caso de absolvição sumária, manteve-se o recebimento da denúncia e designou-se audiência de instrução e julgamento.
+    </p>
+    <p>
+        Durante a instrução criminal, foram ouvidas as testemunhas arroladas pelas partes, bem como realizado o interrogatório do réu. Em memoriais finais, o Ministério Público pugnou pela [procedência/improcedência] da ação. A defesa, por sua vez, requereu a [absolvição/atenuantes/outros pedidos].
+    </p>
+    <p>É o relatório. Passo a fundamentar e decidir.</p>
+
+    <!-- FUNDAMENTAÇÃO -->
+    <div class="section-title">II – FUNDAMENTAÇÃO</div>
+    <p>
+        Trata-se de ação penal pública incondicionada objetivando apurar a responsabilidade criminal do acusado pela prática do delito capitulado no art. [Artigo] do Código Penal.
+    </p>
+    <p>
+        A materialidade do delito restou comprovada pelo auto de prisão em flagrante (fls. XX), pelo laudo pericial (fls. XX) e pelos depoimentos colhidos sob o crivo do contraditório.
+    </p>
+    <p>
+        A autoria, da mesma forma, é certa e recai sobre o acusado. Os depoimentos colhidos em juízo demonstram de forma cristalina que [expor a análise das provas, depoimentos e teses defensivas e acusatórias].
+    </p>
+    <p>
+        Não concorrem em favor do réu quaisquer causas de exclusão da ilicitude ou da culpabilidade, impondo-se, portanto, a prolatação de decreto condenatório.
+    </p>
+
+    <!-- DISPOSITIVO -->
+    <div class="section-title">III – DISPOSITIVO</div>
+    <div class="dispositivo">
+        <p>
+            Ante o exposto, <strong>JULGO PROCEDENTE</strong> a pretensão punitiva deduzida na denúncia para <strong>CONDENAR</strong> o réu <strong>[NOME COMPLETO DO RÉU]</strong>, nas sanções do art. [Artigo do Código Penal].
+        </p>
+        <p>
+            Passo à dosimetria da pena, atento aos critérios previstos no art. 59 do Código Penal:
+        </p>
+        <p>
+            <strong>1ª Fase - Pena-base:</strong> Analisando as circunstâncias judiciais... fixo a pena-base em [X] anos de reclusão e [Y] dias-multa.
+        </p>
+        <p>
+            <strong>2ª Fase - Pena provisória:</strong> Ausentes/Presentes atenuantes ou agravantes... fixo a pena provisória em [X] anos de reclusão.
+        </p>
+        <p>
+            <strong>3ª Fase - Pena definitiva:</strong> Não há causas de aumento ou diminuição de pena, razão pela qual <strong>TORNO DEFINITIVA</strong> a pena em <strong>[X] anos e [Y] meses de reclusão, além do pagamento de [Z] dias-multa</strong>.
+        </p>
+        <p>
+            O regime inicial de cumprimento da pena será o <strong>[FECHADO / SEMIABERTO / ABERTO]</strong>, nos termos do art. 33 do Código Penal.
+        </p>
+        <p>
+            Publique-se. Registre-se. Intimem-se.
+        </p>
+    </div>
+
+    <!-- LOCAL E DATA -->
+    <p style="text-align: right; margin-top: 40px;">
+        Florianópolis/SC, [Dia] de [Mês] de [Ano].
+    </p>
+
+    <!-- ASSINATURA -->
+    <div class="signature-block">
+        <div class="signature-line"></div>
+        <strong>[NOME DO JUIZ / JUÍZA]</strong><br>
+        Juiz(a) de Direito
+    </div>
+
+    <div class="footer-note">
+        Documento assinado digitalmente nos termos da Lei nº 11.419/2006.
+    </div>
+
+</div>
+
+</body>
+</html>

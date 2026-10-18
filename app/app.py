@@ -6,16 +6,13 @@ from starlette.templating import Jinja2Templates
 import os
 import psycopg
 
-
-# Configura o diretório de templates Jinja2
 templates = Jinja2Templates(directory="templates")
 
-# Rota Principal
 async def homepage(request):
   contexto = {"request": request, "site_nome": "Starlette App"}
   return templates.TemplateResponse(request, "index.html", contexto)
 
-def get_crime_penalty(crimes):
+def set_crimes(crimes):
   query = """
     INSERT INTO PUBLIC.GTA (PLAYER_ID, COPS_KILLED, VEHICLES_STOLEN, STORE_HOLD_UPS, MURDERED_CIVILIANS) 
     VALUES (%s, %s, %s, %s, %s)
@@ -26,8 +23,6 @@ def get_crime_penalty(crimes):
         STORE_HOLD_UPS = EXCLUDED.STORE_HOLD_UPS,
         MURDERED_CIVILIANS = EXCLUDED.MURDERED_CIVILIANS;
   """
-  # Aqui você pode adicionar a lógica para calcular a pena com base nos crimes cometidos
-  # Por exemplo, você pode definir regras de penalidade para cada tipo de crime
   with psycopg.connect(os.environ["DATABASE_URL"]) as conn:
     with conn.cursor() as cur:
         cur.execute(
@@ -44,17 +39,16 @@ async def save_stats(request):
     "STORE_HOLD_UPS": int(form_data.get("STORE_HOLD_UPS") or 0),
     "MURDERED_CIVILIANS": int(form_data.get("MURDERED_CIVILIANS") or 0)
   }
-  # Aqui você pode adicionar a lógica para salvar os dados no banco de dados ou realizar outros processos
-  # Por exemplo, você pode inserir os dados na tabela "crimes" do banco de dados
-  get_crime_penalty(crimes)
-  # Aqui você pode adicionar a lógica para exibir a pena calculada ao usuário
-  # Por exemplo, você pode passar a pena para o template HTML e exibi-la
+
+  set_crimes(crimes)
+
   contexto = {}
   return templates.TemplateResponse(request, "penalty.html", contexto)
 
 routes = [
     Route("/", endpoint=homepage, name="homepage"),
     Route("/crimes", endpoint=save_stats, methods=["POST"], name="save_stats"),
+    Mount("/static", app=StaticFiles(directory="static"), name="static"),
 ]
 
 app = Starlette(debug=True, routes=routes)
