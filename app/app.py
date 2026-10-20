@@ -5,6 +5,7 @@ from starlette.staticfiles import StaticFiles
 from starlette.templating import Jinja2Templates
 import os
 import psycopg
+from consult import get_penalty
 
 templates = Jinja2Templates(directory="templates")
 
@@ -41,8 +42,25 @@ async def save_stats(request):
   }
 
   set_crimes(crimes)
+  result_us, result_br = get_penalty(crimes["PLAYER_ID"].lower())
+  crimes_bloco_1 = result_us[:-1] # Todos menos o último (que é a sentença final)
+  sentenca_final_1 = result_us[-1]['anos_pena'] # O último item
 
-  contexto = {}
+  crimes_bloco_2 = result_br[:-1]
+  sentenca_final_2 = result_br[-1]['anos_pena']
+
+  nome_player = result_us[0]['player_id']
+  data_sentenca = "Florianópolis/SC, 20 de outubro de 2026."
+
+  contexto = {
+    "nome_player": nome_player,
+    "data_sentenca": data_sentenca,
+    "crimes_bloco_1": crimes_bloco_1,
+    "sentenca_final_1": sentenca_final_1,
+    "crimes_bloco_2": crimes_bloco_2,
+    "sentenca_final_2": sentenca_final_2
+  }
+  
   return templates.TemplateResponse(request, "penalty.html", contexto)
 
 routes = [
