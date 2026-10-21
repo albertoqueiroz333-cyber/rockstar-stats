@@ -8,40 +8,66 @@
     <!-- CONEXÃO COM O CSS EXTERNO -->
     <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
 
-    <!-- REGRA DE CENTRALIZAÇÃO (Mova para o style.css depois) -->
+    <!-- IMPORTANDO AS BIBLIOTECAS PARA GERAR O PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <!-- REGRA DE CENTRALIZAÇÃO E ESTILO -->
     <style>
-        /* Centraliza todo o texto e elementos inline dentro do body */
         body {
             text-align: center;
-            /* Opcional: define uma largura máxima e centraliza a página na tela */
             max-width: 800px; 
             margin: 0 auto; 
             padding: 20px;
+            background-color: #ffffff;
         }
 
-        /* Garante que tabelas também fiquem centralizadas na página */
         .process-table, .process-box table {
             margin-left: auto;
             margin-right: auto;
-            text-align: left; /* Mantém o texto dentro da tabela alinhado à esquerda */
+            text-align: left; 
         }
 
-        /* Garante que listas fiquem centralizadas na página */
         ul.crimes-list {
             display: inline-block;
-            text-align: left; /* Mantém o texto dos itens alinhado à esquerda */
+            text-align: left; 
         }
         
-        /* Centraliza a imagem do brasão */
         .header img {
             display: block;
             margin: 0 auto 10px auto;
+            max-height: 80px;
+        }
+
+        /* Estilo do Botão de Download */
+        .btn-download {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: background-color 0.2s;
+        }
+
+        .btn-download:hover {
+            background-color: #1d4ed8;
         }
     </style>
-
 </head>
 <body>
-<div class="header">
+
+  <!-- BOTÃO PARA BAIXAR O PDF -->
+  <button id="btnPdf" class="btn-download" onclick="baixarPDF()">📥 Baixar PDF</button>
+
+  <div class="header">
      <img src="{{ url_for('static', path='brasao.png') }}" alt="Brasão do Poder Judiciário">
     <div class="header-title">PODER JUDICIÁRIO</div>
     <div class="header-subtitle">TRIBUNAL DE JUSTIÇA</div>
@@ -118,5 +144,51 @@
   <span>Autenticidade verificável via Código QR / Selo Digital</span>
   <span>Página 1 de 1</span>
 </footer>
+
+  <!-- SCRIPT DE GERAÇÃO DO PDF COM ZOOM AJUSTADO -->
+  <script>
+    async function baixarPDF() {
+        const { jsPDF } = window.jspdf;
+        const botao = document.getElementById('btnPdf');
+        
+        // Esconde o botão antes de capturar a tela
+        botao.style.display = 'none';
+
+        try {
+            // O 'scale' atua como o zoom/nitidez da captura (2 mantém excelente qualidade sem distorcer)
+            const canvas = await html2canvas(document.body, { 
+                scale: 2, 
+                useCORS: true 
+            });
+            
+            const imgData = canvas.toDataURL('image/png');
+
+            // Define o PDF em formato A4 (Retrato, milímetros)
+            const pdf = new jsPDF('p', 'mm', 'a4');
+            const larguraPagina = 210; // Largura total A4 em mm
+            const alturaPagina = 297;  // Altura total A4 em mm
+            
+            // Calcula a altura proporcional da imagem com base na largura da página
+            const alturaImg = (canvas.height * larguraPagina) / canvas.width;
+
+            // Margem opcional de respiro (ex: 5mm nas bordas para afastar das pontas do PDF)
+            const margemX = 5; 
+            const larguraUtil = larguraPagina - (margemX * 2);
+            const alturaUtil = (canvas.height * larguraUtil) / canvas.width;
+
+            // Insere a imagem com o zoom/escala proporcional ajustada perfeitamente na folha
+            pdf.addImage(imgData, 'PNG', margemX, 5, larguraUtil, alturaUtil);
+            
+            // Faz o download do arquivo PDF
+            pdf.save("sentenca-0003819.pdf");
+        } catch (error) {
+            console.error("Erro ao gerar PDF:", error);
+            alert("Ocorreu um erro ao gerar o PDF.");
+        } finally {
+            // Restaura o botão na tela
+            botao.style.display = 'block';
+        }
+    }
+  </script>
 </body>
 </html>
