@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -8,10 +8,41 @@
     <!-- CONEXÃO COM O CSS EXTERNO -->
     <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
 
+    <!-- REGRA DE CENTRALIZAÇÃO (Mova para o style.css depois) -->
+    <style>
+        /* Centraliza todo o texto e elementos inline dentro do body */
+        body {
+            text-align: center;
+            /* Opcional: define uma largura máxima e centraliza a página na tela */
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding: 20px;
+        }
+
+        /* Garante que tabelas também fiquem centralizadas na página */
+        .process-table, .process-box table {
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left; /* Mantém o texto dentro da tabela alinhado à esquerda */
+        }
+
+        /* Garante que listas fiquem centralizadas na página */
+        ul.crimes-list {
+            display: inline-block;
+            text-align: left; /* Mantém o texto dos itens alinhado à esquerda */
+        }
+        
+        /* Centraliza a imagem do brasão */
+        .header img {
+            display: block;
+            margin: 0 auto 10px auto;
+        }
+    </style>
+
 </head>
 <body>
 <div class="header">
-     <img src="{{ url_for('static', path='brasao.png') }}">
+     <img src="{{ url_for('static', path='brasao.png') }}" alt="Brasão do Poder Judiciário">
     <div class="header-title">PODER JUDICIÁRIO</div>
     <div class="header-subtitle">TRIBUNAL DE JUSTIÇA</div>
     <div class="header-subtitle">COMARCA — VARA CRIMINAL E DE EXECUÇÕES PENAIS</div>
@@ -82,8 +113,6 @@
     <strong>JUIZ DE DIREITO TITULAR</strong><br>
     <span style="font-size: 8.5pt; color: #475569;">Vara de Execuções Penais e Julgamento Criminal</span>
   </div>
-
-</div>
 
 <footer class="page-footer">
   <span>Autenticidade verificável via Código QR / Selo Digital</span>
