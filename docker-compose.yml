@@ -2,7 +2,7 @@ services:
   stats_app:
     build: .
     ports:
-      - "8000:8000"
+      - "0.0.0.0:8000:8000"
     depends_on:
       - stats_database
     volumes:
