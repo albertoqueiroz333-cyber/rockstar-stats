@@ -1,68 +1,93 @@
-<!-- DADOS DO PROCESSO -->
-<div class="process-info">
-    <table>
-        <tr>
-            <td style="width: 20%;"><strong>Ação:</strong></td>
-            <td>Ação Penal - Procedimento Ordinário</td>
-        </tr>
-        <tr>
-            <td><strong>Processo nº:</strong></td>
-            <td>0000000-00.2026.8.00.0000</td>
-        </tr>
-        <tr>
-            <td><strong>Autor:</strong></td>
-            <td>Ministério Público</td>
-        </tr>
-        <tr>
-            <td><strong>Réu (Player):</strong></td>
-            <td>{{ nome_player }}</td>
-        </tr>
+  <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentença Criminal</title>
+    
+    <!-- CONEXÃO COM O CSS EXTERNO -->
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
+
+</head>
+<body>
+<div class="header">
+     <img src="{{ url_for('static', path='brasao.png') }}">
+    <div class="header-title">PODER JUDICIÁRIO</div>
+    <div class="header-subtitle">TRIBUNAL DE JUSTIÇA</div>
+    <div class="header-subtitle">COMARCA — VARA CRIMINAL E DE EXECUÇÕES PENAIS</div>
+  </div>
+
+  <!-- DADOS DO PROCESSO -->
+  <div class="process-box">
+    <table class="process-table">
+      <tr>
+        <td style="width: 22%;"><strong>Ação Penal:</strong></td>
+        <td>Procedimento Sumaríssimo / Especial</td>
+        <td style="width: 15%;"><strong>Processo:</strong></td>
+        <td>0003819-82.2026.8.24.0023</td>
+      </tr>
+      <tr>
+        <td><strong>Autor:</strong></td>
+        <td>Ministério Público do Estado</td>
+        <td><strong>Data:</strong></td>
+        <td>{{ data_sentenca }}</td>
+      </tr>
+      <tr>
+        <td><strong>Réu (Player):</strong></td>
+        <td colspan="3"><strong>{{ nome_player }}</strong></td>
+      </tr>
     </table>
-</div>
+  </div>
 
-<!-- TÍTULO DA SENTENÇA -->
-<div class="title">SENTENÇA</div>
+  <div class="doc-title">SENTENÇA CONDENATÓRIA</div>
 
-<!-- FUNDAMENTAÇÃO / CRIMES ATRIBUÍDOS -->
-<div class="section-title">I – FUNDAMENTAÇÃO E CRIMES</div>
-<p>
-    O réu <strong>{{ nome_player }}</strong> respondeu pelos seguintes conjuntos de acusações:
-</p>
+  <!-- RELATÓRIO E FUNDAMENTAÇÃO -->
+  <div class="section-heading">I – RELATÓRIO E FUNDAMENTAÇÃO</div>
+  <p>
+    O <strong>MINISTÉRIO PÚBLICO</strong> apresentou denúncia em face do réu <strong>{{ nome_player }}</strong>, imputando-lhe a prática de infrações penais acumuladas nos sistemas jurídicos comparados. Instruído o feito com os autos da investigação, restou devidamente comprovada a autoria e a materialidade delitiva dos crimes indicados.
+  </p>
 
-<!-- Exibindo a primeira lista de crimes -->
-<p><strong>Conjunto de Leis 1:</strong></p>
-<ul>
+  <p class="no-indent"><strong>Dosimetria por Legislação Comparada (Estados Unidos):</strong></p>
+  <ul class="crimes-list">
     {% for item in crimes_bloco_1 %}
-    <li>Artigo/Lei: <strong>{{ item.law_number }}</strong> — Pena: {{ item.anos_pena }}</li>
+    <li>Artigo/Capítulo: <strong>{{ item.law_number }}</strong> — Sanção Aplicada: {{ item.anos_pena }}</li>
     {% endfor %}
-</ul>
+  </ul>
 
-<!-- Exibindo a segunda lista de crimes -->
-<p><strong>Conjunto de Leis 2:</strong></p>
-<ul>
+  <p class="no-indent"><strong>Dosimetria por Legislação Nacional (Código Penal Brasileiro):</strong></p>
+  <ul class="crimes-list">
     {% for item in crimes_bloco_2 %}
-    <li>Artigo/Lei: <strong>{{ item.law_number }}</strong> — Pena: {{ item.anos_pena }}</li>
+    <li>Dispositivo Legal: <strong>{{ item.law_number }}</strong> — Sanção Aplicada: {{ item.anos_pena }}</li>
     {% endfor %}
-</ul>
+  </ul>
 
-<!-- DISPOSITIVO -->
-<div class="section-title">II – DISPOSITIVO</div>
-<div class="dispositivo">
-    <p>
-        Ante o exposto, <strong>JULGO PROCEDENTE</strong> a pretensão punitiva para <strong>CONDENAR</strong> o réu <strong>{{ nome_player }}</strong>.
+  <!-- DISPOSITIVO -->
+  <div class="section-heading">II – DISPOSITIVO E CONDENAÇÃO</div>
+  <div class="dispositivo-card">
+    <p class="no-indent">
+      Ante o exposto, <strong>JULGO PROCEDENTE</strong> a pretensão punitiva do Estado para <strong>CONDENAR</strong> o réu <strong>{{ nome_player }}</strong> às seguintes penas definitivas:
     </p>
-    
-    <p>
-        <strong>Sentença Final (Estados Unidos):</strong> {{ sentenca_final_1 }}<br>
-        <strong>Sentença Final (Brasil):</strong> {{ sentenca_final_2 }}
+    <p class="no-indent" style="margin-top: 6px;">
+      • <strong>Pena Definitiva (Jurisdição EUA):</strong> {{ sentenca_final_1 }}<br>
+      • <strong>Pena Definitiva (Jurisdição BR):</strong> {{ sentenca_final_2 }}
     </p>
-    
-    <p>
-        Publique-se. Registre-se. Intimem-se.
-    </p>
+  </div>
+
+  <div class="data-line">
+     {{ data_sentenca }}.
+  </div>
+
+  <div class="signature-block">
+    <div class="signature-line"></div>
+    <strong>JUIZ DE DIREITO TITULAR</strong><br>
+    <span style="font-size: 8.5pt; color: #475569;">Vara de Execuções Penais e Julgamento Criminal</span>
+  </div>
+
 </div>
 
-<!-- LOCAL E DATA -->
-<p style="text-align: right; margin-top: 40px;">
-    {{ data_sentenca }}
-</p>
+<footer class="page-footer">
+  <span>Autenticidade verificável via Código QR / Selo Digital</span>
+  <span>Página 1 de 1</span>
+</footer>
+</body>
+</html>

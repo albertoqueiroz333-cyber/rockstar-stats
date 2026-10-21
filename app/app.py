@@ -6,6 +6,12 @@ from starlette.templating import Jinja2Templates
 import os
 import psycopg
 from consult import get_penalty
+from datetime import datetime
+from zoneinfo import ZoneInfo
+import locale
+
+locale.setlocale(locale.LC_TIME, 'pt_BR.UTF-8')
+fuso_sp = ZoneInfo("America/Sao_Paulo")
 
 templates = Jinja2Templates(directory="templates")
 
@@ -50,7 +56,7 @@ async def save_stats(request):
   sentenca_final_2 = result_br[-1]['anos_pena']
 
   nome_player = result_us[0]['player_id']
-  data_sentenca = "Florianópolis/SC, 20 de outubro de 2026."
+  data_sentenca = datetime.now(tz=fuso_sp).strftime("%d de %B de %Y.")
 
   contexto = {
     "nome_player": nome_player,

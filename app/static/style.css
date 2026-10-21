@@ -1,0 +1,29 @@
+/* Estilos ajustados para o Cabeçalho e o Brasão */
+.header {
+    text-align: center;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-bottom: 2px solid #1e293b;
+    padding-bottom: 15px;
+}
+
+.header .brasao-svg {
+    width: 50px;
+    height: 50px;
+    display: block;
+    margin: 0 auto 12px auto; /* Centraliza o SVG e cria um espaçamento uniforme abaixo dele */
+}
+
+.header-title {
+    font-size: 13pt;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+    margin-bottom: 3px;
+}
+
+.header-subtitle {
+    font-size: 10pt;
+    color: #334155;
+    margin-top: 1px;
+}
