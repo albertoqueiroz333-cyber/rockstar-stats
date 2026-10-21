@@ -47,6 +47,15 @@ async def save_stats(request):
     "MURDERED_CIVILIANS": int(form_data.get("MURDERED_CIVILIANS") or 0)
   }
 
+  if len(crimes["PLAYER_ID"]) > 20:
+    raise ValueError("PLAYER_ID cannot exceed 20 characters.")
+
+  if (crimes["COPS_KILLED"] > 10 or
+      crimes["VEHICLES_STOLEN"] > 10 or
+      crimes["STORE_HOLD_UPS"] > 10 or
+      crimes["MURDERED_CIVILIANS"] > 10):
+    raise ValueError("Crime values cannot exceed 10.")
+
   set_crimes(crimes)
   result_us, result_br = get_penalty(crimes["PLAYER_ID"].lower())
   crimes_bloco_1 = result_us[:-1] # Todos menos o último (que é a sentença final)
