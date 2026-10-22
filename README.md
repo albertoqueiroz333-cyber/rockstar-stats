@@ -25,6 +25,7 @@ Abaixo estão listadas as principais ferramentas, bibliotecas e suas respectivas
 | Tecnologia / Lib | Versão |
 | :--- | :--- |
 | **Python** | `3.15` |
+| **PostgreSQL** | `18.6` |
 | **Starlette** | `1.8.0` |
 | **Jinja** | `3.1.6` |
 | **Uvicorn** | `0.54.0` |
