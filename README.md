@@ -1,16 +1,34 @@
-# rockstar-stats
+Projeto Rockstar-Stats
 
-## Salvar estatísticas
+    #O projeto consiste em uma pesquisa realizada através de uma inserção de dados
+no formulário do site do projeto
 
-O formulário envia os dados por `POST /stats` como
-`application/x-www-form-urlencoded`. O endpoint salva ou atualiza o jogador na
-tabela `public.gta`, usando `PLAYER_ID` como chave.
 
-Campos obrigatórios:
 
-- `PLAYER_ID`: texto de 1 a 100 caracteres
-- `COPS_KILLED`, `VEHICLES_STOLEN`, `STORE_HOLD_UPS`,
-  `MURDERED_CIVILIANS`: inteiros não negativos
+Tecnologias Utilizadas
 
-Em caso de sucesso, retorna HTTP `200` com o `PLAYER_ID` salvo. Erros de entrada
-retornam HTTP `400`; indisponibilidade de configuração do banco retorna `503`.
+    HTML (para o front-end)
+    Python
+    Docker
+    PostgreSQL
+    Starlette
+    Jinja 
+    Uvicorn
+
+Dependências e Versões Necessárias
+
+Liste as dependências necessárias para rodar o projeto e as versões que você utilizou.
+
+    Uvicorn - Versão: 0.54.0
+    Jinja - Versão: 3.1.6
+    Docker - Versão: 4.95.0
+    Python - Versão: 3.15
+    Starlette - Versão: 1.8.0
+
+Como rodar o projeto ✅
+ 
+ instale o docker 
+ baixe o projeto do git hub
+ rode o comando docker compose up --build -d 
+
+

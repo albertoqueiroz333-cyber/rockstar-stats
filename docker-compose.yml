@@ -13,6 +13,7 @@ services:
     image: postgres
     volumes:
       - pgdata:/var/lib/postgresql/
+      - ./init-scripts:/docker-entrypoint-initdb.d
     environment:
       POSTGRES_USER: app_user
       POSTGRES_DB: app_db

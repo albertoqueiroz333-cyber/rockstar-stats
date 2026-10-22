@@ -1,5 +1,13 @@
--- 1. Homicídio Funcional (Contra Agentes de Segurança Pública)
--- Art. 121, § 2º, VII do Código Penal (Homicídio Qualificado / Crime Hediondo)
+CREATE TABLE PUBLIC.BR_LAWS (
+    LAW_NUMBER VARCHAR(50) NOT NULL,
+    LAW_NAME VARCHAR(255) NOT NULL,
+    LAW_DESCRIPTION TEXT,
+    PITY_YEARS INTEGER,
+    LIFE_SENTENCE BOOLEAN DEFAULT FALSE,
+    DEATH_PENALTY BOOLEAN DEFAULT FALSE,
+    PRIMARY KEY (LAW_NUMBER)
+);
+
 INSERT INTO PUBLIC.BR_LAWS (LAW_NUMBER, LAW_NAME, LAW_DESCRIPTION, PITY_YEARS, LIFE_SENTENCE, DEATH_PENALTY) 
 VALUES (
     'CP Art. 121, §2º, VII', 
@@ -22,17 +30,7 @@ VALUES (
     FALSE
 );
 
--- 3. Furto de Veículo Automotor / Uso Não Autorizado
--- Art. 155 (Furto) / Art. 155, § 5º do Código Penal
-INSERT INTO PUBLIC.BR_LAWS (LAW_NUMBER, LAW_NAME, LAW_DESCRIPTION, PITY_YEARS, LIFE_SENTENCE, DEATH_PENALTY) 
-VALUES (
-    'CP Art. 155, §5º', 
-    'Furto de Veículo Automotor', 
-    'Subtrair veículo automotor para si ou para outrem, sem o emprego de violência ou ameaça direta contra a pessoa.', 
-    3, 
-    FALSE, 
-    FALSE
-);
+
 
 -- 4. Roubo Majorado pelo Emprego de Arma de Fogo (Assalto a Estabelecimento Comercial)
 -- Art. 157, § 2º-A, I do Código Penal
@@ -58,14 +56,3 @@ VALUES (
     FALSE
 );
 
--- 6. Homicídio Simples (Corresponde ao Second-Degree Murder)
--- Art. 121, caput do Código Penal
-INSERT INTO PUBLIC.BR_LAWS (LAW_NUMBER, LAW_NAME, LAW_DESCRIPTION, PITY_YEARS, LIFE_SENTENCE, DEATH_PENALTY) 
-VALUES (
-    'CP Art. 121, caput', 
-    'Homicídio Simples', 
-    'Matar alguém de forma ilícita e intencional, sem a presença de qualificadoras ou premeditação Torpe/Fútil.', 
-    6, 
-    FALSE, 
-    FALSE
-);
